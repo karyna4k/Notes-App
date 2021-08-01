@@ -4,6 +4,7 @@
     <li class="note" v-for="(note, index) in notes" :key="index">
       <div class="note-header">
         <p>{{ note.title }}</p>
+        <p @click="removeNote(index)">x</p>
       </div>
       <div class="note-body">
         <p>{{ note.descr }}</p>
@@ -19,6 +20,12 @@ export default {
     notes: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    removeNote(index) {
+      console.log(`Note id ${index} removed`);
+      this.$emit("remove", index);
     },
   },
 };
@@ -37,6 +44,16 @@ export default {
   width: calc((100% - 40px) / 2);
   padding: 20px;
   background-color: #fff;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.note + .note {
+  @media screen and (max-width: 768px) {
+    margin-top: 40px;
+  }
 }
 
 .note:nth-child(n + 2) + .note {
@@ -44,10 +61,18 @@ export default {
 }
 
 .note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   p {
     color: #494ce8;
     font-size: 22px;
     font-weight: 700;
+
+    &:last-of-type {
+      cursor: pointer;
+    }
   }
 }
 

@@ -9,7 +9,7 @@
 
           <NewNote :note="note" @addNote="addNote" />
 
-          <Notes :notes="notes" />
+          <Notes :notes="notes" @remove="removeNote" />
         </div>
       </section>
     </div>
@@ -73,6 +73,9 @@ export default {
       this.note.title = "";
       this.note.descr = "";
     },
+    removeNote(index) {
+      this.notes.splice(index, 1);
+    }
   },
 };
 </script>
