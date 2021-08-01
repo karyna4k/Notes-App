@@ -8,14 +8,8 @@
           <Message v-if="message" :message="message" />
 
           <NewNote :note="note" @addNote="addNote" />
-          <!-- note list -->
-          <ul class="notes">
-            <li class="note" v-for="(note, index) in notes" :key="index">
-              <h2 class="note-header">{{ note.title }}</h2>
-              <p class="note-description">{{ note.descr }}</p>
-              <span class="note-date">{{ note.date }}</span>
-            </li>
-          </ul>
+
+          <Notes :notes="notes" />
         </div>
       </section>
     </div>
@@ -25,11 +19,13 @@
 <script>
 import Message from "@/components/Message.vue";
 import NewNote from "./components/NewNote.vue";
+import Notes from './components/Notes.vue';
 
 export default {
   components: {
     Message,
     NewNote,
+    Notes,
   },
   data() {
     return {
