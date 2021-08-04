@@ -12,6 +12,7 @@
         <p @click="removeNote(index)">x</p>
       </div>
       <div class="note-body">
+        <span :class="note.priority" >{{ note.priority }}</span>
         <p>{{ note.descr }}</p>
         <span>{{ note.date }}</span>
       </div>
@@ -129,6 +130,35 @@ export default {
   span {
     font-size: 14px;
     color: #999;
+
+    &:first-of-type {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      font-weight: 700;
+      color: #101010;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border-radius: 50%;
+      }
+    }
+
+    &.low::before {
+      background-color: green;
+    }
+
+    &.normal::before {
+      background-color: grey;
+    }
+
+    &.high::before {
+      background-color: red;
+    }
   }
 }
 </style>

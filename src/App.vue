@@ -92,21 +92,25 @@ export default {
       note: {
         title: "",
         descr: "",
+        priority: "normal"
       },
       notes: [
         {
           title: "First note",
           descr: "Description for the first note",
+          priority: "normal",
           date: new Date(Date.now()).toLocaleString(),
         },
         {
           title: "Second note",
           descr: "Description for the second note",
+          priority: "low",
           date: new Date(Date.now()).toLocaleString(),
         },
         {
           title: "Third note",
           descr: "Description for the third note",
+          priority: "high",
           date: new Date(Date.now()).toLocaleString(),
         },
       ],
@@ -132,7 +136,7 @@ export default {
   },
   methods: {
     addNote() {
-      let { title, descr } = this.note;
+      let { title, descr, priority } = this.note;
 
       if (title === "") {
         this.message = "Title can not be blank!";
@@ -142,11 +146,13 @@ export default {
       this.notes.push({
         title,
         descr,
+        priority,
         date: new Date(Date.now()).toLocaleString(),
       });
 
       this.message = null;
       this.note.title = "";
+      this.priority = "normal";
       this.note.descr = "";
     },
     removeNote(index) {
